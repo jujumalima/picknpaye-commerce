@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'create-category', component: CreatecategoryComponent },
   { path: 'banking-details', component: BankingdetailsComponent },
   { path: 'order-details', component: OrderComponent },
-  { path: 'orders', component: VieworderComponent },
+  { path: 'orders-listed', component: VieworderComponent },
   { path: 'supplier-panel', component: SupplierComponent },
   { path:  'admin-admin-panel', component: AdminComponent },
   { path: 'update-order-status', component: UpdateorderstatusComponent },

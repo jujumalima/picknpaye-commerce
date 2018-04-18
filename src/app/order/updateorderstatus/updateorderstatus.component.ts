@@ -29,7 +29,7 @@ export class UpdateorderstatusComponent implements OnInit {
       .subscribe((createdOrder) => {
 
         console.log(createdOrder);
-        this._router.navigate(['/orders']);
+        this._router.navigate(['/orders-listed']);
 
       }, (error) => {
 
@@ -43,7 +43,7 @@ export class UpdateorderstatusComponent implements OnInit {
         .subscribe((updatedOrder) => {
 
           console.log(updatedOrder);
-          this._router.navigate(['/orders']);
+          this._router.navigate(['/orders-listed']);
 
         }, (error) => {
 

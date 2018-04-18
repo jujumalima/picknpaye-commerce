@@ -15,7 +15,7 @@ export class DriverComponent implements OnInit {
 
   viewOrders() {
 
-    this._router.navigate(['orders']);
+    this._router.navigate(['orders-listed']);
 
   }
 

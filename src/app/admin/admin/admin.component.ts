@@ -44,7 +44,7 @@ export class AdminComponent implements OnInit {
 
   viewOrders() {
 
-    this._router.navigate(['/orders']);
+    this._router.navigate(['/orders-listed']);
 
   }
 

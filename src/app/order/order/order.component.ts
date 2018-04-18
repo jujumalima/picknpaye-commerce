@@ -145,35 +145,35 @@ export class OrderComponent implements OnInit {
 
   subtractProductQuantity() {
 
-    for (let index = 0; index < this.productsFromDatabase.length; index++) {
+    if (this.cartItems.length !== 0) {
 
-      if (this.productsFromDatabase[index].name  === this.getProductsFromCartItems()[index].name ) {
+      for (let index = 0; index < this.cartItems.length; index++) {
 
-        this.updatedQuantity = this.productsFromDatabase[index].quantity - this.cartItems[index].count;
+        if (this.productsFromDatabase[index].name === this.cartItems[index].product.name) {
 
-        this.productToBeUpdated.quantity = this.updatedQuantity;
-        this.productToBeUpdated.category = this.cartItems[index].product.category;
-        this.productToBeUpdated.image = this.cartItems[index].product.image;
-        this.productToBeUpdated.name = this.cartItems[index].product.name;
-        this.productToBeUpdated.productID = this.cartItems[index].product.productID;
-        this.productToBeUpdated.purchased = true;
-        this.productToBeUpdated.unitPrice = this.cartItems[index].product.unitPrice;
+          console.log(this.cartItems.length);
+          this.updatedQuantity = this.productsFromDatabase[index].quantity - this.cartItems[index].count;
 
-        this._productService.updateProduct(this.productToBeUpdated)
-          .subscribe((data) => {
+          this.productToBeUpdated.quantity = this.updatedQuantity;
+          this.productToBeUpdated.category = this.cartItems[index].product.category;
+          this.productToBeUpdated.image = this.cartItems[index].product.image;
+          this.productToBeUpdated.name = this.cartItems[index].product.name;
+          this.productToBeUpdated.productID = this.cartItems[index].product.productID;
+          this.productToBeUpdated.purchased = true;
+          this.productToBeUpdated.unitPrice = this.cartItems[index].product.unitPrice;
 
-            console.log('Before quantity ' + this.productsFromDatabase[index].quantity);
-            console.log('After quantity ' + this.cartItems[index].product.quantity);
+          this._productService.updateProduct(this.productToBeUpdated)
+            .subscribe((data) => {
 
-          }, (error) => {
+            }, (error) => {
 
-            console.log(error);
+              console.log(error);
 
-          });
+            });
+        }
       }
 
     }
-
   }
 
   createOrder() {
@@ -190,12 +190,8 @@ export class OrderComponent implements OnInit {
     this._orderService.createOrder(this.order)
       .subscribe((data) => {
 
-        console.log(data);
-        console.log(this.order);
-        console.log('Thank you ' + this.customer.fullNames + ' Please come again!!');
+        this.subtractProductQuantity();
         alert('Thank you ' + this.customer.fullNames + ' Please come again!!');
-        this._loginService.logout();
-        this._router.navigate(['/home']);
 
       }, (error) => {
 
@@ -203,7 +199,9 @@ export class OrderComponent implements OnInit {
 
       });
 
-      this.subtractProductQuantity();
+    this._loginService.logout();
+    this._router.navigate(['/home']);
+
   }
 
   getCurrentDate(): Date {
