@@ -155,7 +155,7 @@ export class OrderComponent implements OnInit {
         this.productToBeUpdated.image = this.cartItems[index].product.image;
         this.productToBeUpdated.name = this.cartItems[index].product.name;
         this.productToBeUpdated.productID = this.cartItems[index].product.productID;
-        this.productToBeUpdated.purchased = this.cartItems[index].product.purchased;
+        this.productToBeUpdated.purchased = true;
         this.productToBeUpdated.unitPrice = this.cartItems[index].product.unitPrice;
 
         this._productService.updateProduct(this.productToBeUpdated)
