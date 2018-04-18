@@ -7,6 +7,7 @@ import { Order } from '../order';
 import { CustomerService } from '../../service/customer.service';
 import { CartItem } from '../../cartitem/cart-item';
 import { LoginService } from '../../service/login.service';
+import { ProductService } from '../../service/product.service';
 
 @Component({
   selector: 'app-order',
@@ -25,15 +26,19 @@ export class OrderComponent implements OnInit {
   currentDate: Date;
   currentTime: Date;
   numberOrder: number;
+  productsFromDatabase: Product[];
+  productToBeUpdated: Product;
+  updatedQuantity: number;
 
   // tslint:disable-next-line:max-line-length
-  constructor(private _orderService: OrderService, private _router: Router, private _customerService: CustomerService, private _loginService: LoginService) { }
+  constructor(private _orderService: OrderService, private _router: Router, private _customerService: CustomerService, private _loginService: LoginService, private _productService: ProductService) { }
 
   ngOnInit() {
 
     this.customer = new Customer();
     this.product = new Product();
     this.order = new Order();
+    this.productToBeUpdated = new Product();
 
     this.getLoggedInCustomer();
     this.getCartItems();
@@ -126,6 +131,50 @@ export class OrderComponent implements OnInit {
     return this.cartGrandTotal;
   }
 
+  getAllProductsFromDatabase() {
+
+    this._productService.getAllProducts()
+      .subscribe((ps) => {
+        this.productsFromDatabase = ps;
+      }, (error) => {
+        console.log(error);
+      });
+
+  }
+
+  subtractProductQuantity() {
+
+    for (let index = 0; index < this.cartItems.length; index++) {
+
+      if (this.productsFromDatabase[index].name === this.cartItems[index].product.name) {
+
+        this.updatedQuantity = this.productsFromDatabase[index].quantity - this.cartItems[index].count;
+
+        this.productToBeUpdated.quantity = this.updatedQuantity;
+        this.productToBeUpdated.category = this.cartItems[index].product.category;
+        this.productToBeUpdated.image = this.cartItems[index].product.image;
+        this.productToBeUpdated.name = this.cartItems[index].product.name;
+        this.productToBeUpdated.productID = this.cartItems[index].product.productID;
+        this.productToBeUpdated.purchased = this.cartItems[index].product.purchased;
+        this.productToBeUpdated.unitPrice = this.cartItems[index].product.unitPrice;
+
+        this._productService.updateProduct(this.productToBeUpdated)
+          .subscribe((data) => {
+
+            console.log('Before quantity ' + this.productsFromDatabase[index].quantity);
+            console.log('After quantity ' + this.cartItems[index].product.quantity);
+
+          }, (error) => {
+
+            console.log(error);
+
+          });
+      }
+
+    }
+
+  }
+
   createOrder() {
 
     this.order.amount = this.getCartGrandTotal();
@@ -136,23 +185,24 @@ export class OrderComponent implements OnInit {
     this.order.fullNames = this.customer.fullNames;
     this.order.houseNo = this.customer.houseNo;
     this.order.area = this.customer.surburb;
-    // this.order.products = this.getProductsFromCartItems();
+
     this._orderService.createOrder(this.order)
-    .subscribe((data) => {
+      .subscribe((data) => {
 
-      console.log(data);
-      console.log(this.order);
-      console.log('Thank you ' + this.customer.fullNames + ' Please come again!!');
-      alert('Thank you ' + this.customer.fullNames + ' Please come again!!');
-      this._loginService.logout();
-      this._router.navigate(['/home']);
+        console.log(data);
+        console.log(this.order);
+        console.log('Thank you ' + this.customer.fullNames + ' Please come again!!');
+        alert('Thank you ' + this.customer.fullNames + ' Please come again!!');
+        this._loginService.logout();
+        this._router.navigate(['/home']);
 
-    }, (error) => {
+      }, (error) => {
 
-      console.log(error);
+        console.log(error);
 
-    });
+      });
 
+      this.subtractProductQuantity();
   }
 
   getCurrentDate(): Date {

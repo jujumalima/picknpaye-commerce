@@ -5,7 +5,7 @@ export class Product {
     name: string;
     purchased: boolean;
     unitPrice: Number;
-    quantity: Number;
+    quantity: number;
     image: string;
     category: Category;
 }
