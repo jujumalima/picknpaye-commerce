@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+body > app-root > nav > div > ul > li > a{
+
+    color: rgb(170, 23, 23);
+    font-weight: 800;
+}
+
+.navbar-default .navbar-brand{
+
+    font-weight: 800;
+    color: midnightblue;
+    font-size: 36px;
+}
+
+
+body, html{
+
+    margin: 0;
+    padding: 0;
+}
+
