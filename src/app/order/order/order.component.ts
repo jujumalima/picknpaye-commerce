@@ -45,6 +45,7 @@ export class OrderComponent implements OnInit {
     this.getCartGrandTotal();
     this.getCurrentDate();
     this.getCurrentTime();
+    this.getAllProductsFromDatabase();
 
   }
 
@@ -146,7 +147,7 @@ export class OrderComponent implements OnInit {
 
     for (let index = 0; index < this.productsFromDatabase.length; index++) {
 
-      if (JSON.parse(this.productsFromDatabase[index].name) === JSON.parse(this.cartItems[index].product.name)) {
+      if (this.productsFromDatabase[index].name  === this.getProductsFromCartItems()[index].name ) {
 
         this.updatedQuantity = this.productsFromDatabase[index].quantity - this.cartItems[index].count;
 
