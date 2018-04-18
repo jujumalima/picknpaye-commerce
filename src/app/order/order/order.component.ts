@@ -144,7 +144,7 @@ export class OrderComponent implements OnInit {
 
   subtractProductQuantity() {
 
-    for (let index = 0; index < this.cartItems.length; index++) {
+    for (let index = 0; index < this.productsFromDatabase.length; index++) {
 
       if (JSON.parse(this.productsFromDatabase[index].name) === JSON.parse(this.cartItems[index].product.name)) {
 
