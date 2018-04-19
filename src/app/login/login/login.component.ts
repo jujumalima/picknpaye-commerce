@@ -93,4 +93,10 @@ export class LoginComponent implements OnInit {
       });
 
   }
+
+  recoverPassword() {
+
+    this._router.navigate(['/recover-password']);
+
+  }
 }

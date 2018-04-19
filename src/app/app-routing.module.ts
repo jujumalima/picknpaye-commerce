@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'order-details', component: OrderComponent },
   { path: 'orders-listed', component: VieworderComponent },
   { path: 'supplier-panel', component: SupplierComponent },
-  { path:  'admin-admin-panel', component: AdminComponent },
+  { path: 'admin-admin-panel', component: AdminComponent },
   { path: 'update-order-status', component: UpdateorderstatusComponent },
   { path: 'create-order', component: CreateorderComponent },
   { path: 'customer-profile', component: CustomerprofileComponent },

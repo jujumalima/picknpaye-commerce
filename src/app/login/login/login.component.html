@@ -26,7 +26,7 @@
 
         <div *ngIf="model.error" class="alert alert-error">{{model.error}}
           <br>
-          <a routerLink="recover-password">Forgot password?</a>
+          <a (click)="recoverPassword()">Forgot password?</a>
         </div>
       </div>
       <div class="panel-footer">

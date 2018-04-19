@@ -50,7 +50,7 @@ export class CreateproductComponent implements OnInit {
       this._productService.updateProduct(this.product)
         .subscribe((updatedProduct) => {
           console.log(updatedProduct);
-          this._router.navigate(['/home']);
+          this._router.navigate(['/supplier-panel']);
         }, (error) => {
           console.log(error);
         });
