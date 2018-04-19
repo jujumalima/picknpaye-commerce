@@ -8,6 +8,8 @@ import { CustomerService } from '../../service/customer.service';
 import { CartItem } from '../../cartitem/cart-item';
 import { LoginService } from '../../service/login.service';
 import { ProductService } from '../../service/product.service';
+import { NotificationsService } from 'angular4-notify';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-order',
@@ -31,7 +33,7 @@ export class OrderComponent implements OnInit {
   updatedQuantity: number;
 
   // tslint:disable-next-line:max-line-length
-  constructor(private _orderService: OrderService, private _router: Router, private _customerService: CustomerService, private _loginService: LoginService, private _productService: ProductService) { }
+  constructor(private _orderService: OrderService, private _router: Router, private _customerService: CustomerService, private _loginService: LoginService, private _productService: ProductService, private _matSnackBar: MatSnackBar) { }
 
   ngOnInit() {
 
@@ -176,6 +178,14 @@ export class OrderComponent implements OnInit {
     }
   }
 
+  showNotification(text: string) {
+
+    this._matSnackBar.open(text, 'Thank You', {
+      duration: 10000
+    });
+
+  }
+
   createOrder() {
 
     this.order.amount = this.getCartGrandTotal();
@@ -191,7 +201,11 @@ export class OrderComponent implements OnInit {
       .subscribe((data) => {
 
         this.subtractProductQuantity();
-        alert('Thank you ' + this.customer.fullNames + ' Please come again!!');
+
+        // tslint:disable-next-line:max-line-length
+        const messageNotification = 'Thank you ' + this.customer.fullNames + ', Expect your delivery within 30 minutes or hours time';
+
+        this.showNotification(messageNotification);
 
       }, (error) => {
 
@@ -211,5 +225,4 @@ export class OrderComponent implements OnInit {
 
 
   }
-
 }

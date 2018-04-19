@@ -5,6 +5,9 @@ import { HttpModule } from '@angular/http';
 import { ConfirmEqualValidator } from './customvalidator/confirm-equalpassword.directive';
 import { NgxCarouselModule } from 'ngx-carousel';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -42,6 +45,7 @@ import { DriverRoutingModule } from './driver/driver/driver-routing.module';
 import { AdminComponent } from './admin/admin/admin.component';
 import { SupplierComponent } from './supplier/supplier/supplier.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +79,9 @@ import { SupplierComponent } from './supplier/supplier/supplier.component';
     AppRoutingModule,
     NgxCarouselModule,
     DriverModule,
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [
 
@@ -88,7 +94,6 @@ import { SupplierComponent } from './supplier/supplier/supplier.component';
     BankdetailService,
     OrderService,
     UserService
-
   ],
   bootstrap: [AppComponent]
 })

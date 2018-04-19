@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../service/product.service';
 import { Product } from '../../product/product';
 import { CartItem } from '../../cartitem/cart-item';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-cart',
@@ -15,10 +16,12 @@ export class CartComponent implements OnInit {
   cartItems: CartItem[];
   cartItem: CartItem;
   cartGrandTotal = 0;
-  constructor(private _cartService: CartService, private _router: Router) { }
+  // tslint:disable-next-line:max-line-length
+  constructor(private _cartService: CartService, private _router: Router, private _matSnackBar: MatSnackBar) { }
 
   ngOnInit() {
 
+    // this._notificationService.show('Hello cart!!!');
     this._cartService.getCartItems()
       .subscribe((returnedCartItems) => {
 
@@ -83,11 +86,21 @@ export class CartComponent implements OnInit {
 
     if (localStorage.getItem('cartGrandTotal').startsWith('0')) {
 
-      alert('Your cart is empty!!');
+      this.openDialog('Your cart is empty!!');
+
     } else {
 
       this._router.navigate(['/banking-details']);
 
     }
   }
+
+  openDialog(text: string) {
+
+    this._matSnackBar.open(text, 'Ok', {
+      duration: 5000
+    });
+
+  }
+
 }
