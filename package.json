@@ -26,6 +26,7 @@
     "angular4-notify": "^1.2.0",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
+    "datatables.net": "^1.10.16",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "jquery": "^3.3.1",

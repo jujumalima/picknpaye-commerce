@@ -19,6 +19,7 @@ export class ListcategoryComponent implements OnInit {
   deleteDisabled = false;
   updateDisabled = false;
 
+
   constructor(private _categoryService: CategoryService, private _router: Router, private _userService: UserService) { }
 
   ngOnInit() {
@@ -40,7 +41,6 @@ export class ListcategoryComponent implements OnInit {
     });
 
     this.getLoggedInUser();
-
   }
 
   deleteCategory(category) {
