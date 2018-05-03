@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class UpdateproductquantityComponent implements OnInit {
 
   private product: Product;
+  updatedQuantity = 0;
 
   constructor(private _productService: ProductService, private _router: Router) { }
 
@@ -22,6 +23,10 @@ export class UpdateproductquantityComponent implements OnInit {
 
 
   updateProductQuantity() {
+
+    this.updatedQuantity = this.updatedQuantity + this.product.quantity + this.product.badgeQuantity;
+
+    this.product.quantity = this.updatedQuantity;
 
     this._productService.updateProduct(this.product)
     .subscribe((data) => {
@@ -35,7 +40,6 @@ export class UpdateproductquantityComponent implements OnInit {
       console.log(error);
 
     });
-
 
 
   }

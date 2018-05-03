@@ -11,27 +11,39 @@ import { Router } from '@angular/router';
 export class CreatesupplierComponent implements OnInit {
 
   private supplier: Supplier;
+  private suppliers: Supplier[];
+
   constructor(private _supplierService: SupplierService, private _router: Router) { }
 
   ngOnInit() {
 
     this.supplier = new Supplier();
+    this._supplierService.getAllSuppliers()
+      .subscribe((suppliersList) => {
+
+        this.suppliers = suppliersList;
+
+      }, (error) => {
+
+        console.log(error);
+
+      });
 
   }
 
   saveSupplier() {
 
     this._supplierService.addSupplier(this.supplier)
-    .subscribe((response) => {
+      .subscribe((response) => {
 
-      this._router.navigate(['/admin-admin-panel']);
+        this._router.navigate(['/admin-admin-panel']);
 
 
-    }, (error) => {
+      }, (error) => {
 
-      console.log(error);
+        console.log(error);
 
-    });
+      });
 
   }
 

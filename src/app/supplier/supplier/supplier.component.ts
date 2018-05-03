@@ -4,6 +4,7 @@ import { Product } from '../../product/product';
 import { Router } from '@angular/router';
 import { User } from '../../login/user';
 import { UserService } from '../../service/user.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-supplier',
@@ -15,7 +16,12 @@ export class SupplierComponent implements OnInit {
   private products: Product[];
   private user: User;
   loggedInUser: string;
-  constructor(private _productService: ProductService, private _router: Router, private _userService: UserService) { }
+  snackBarText: string;
+
+
+
+  // tslint:disable-next-line:max-line-length
+  constructor(private _productService: ProductService, private _router: Router, private _userService: UserService, private _matSnackBar: MatSnackBar) { }
 
   ngOnInit() {
 
@@ -26,28 +32,47 @@ export class SupplierComponent implements OnInit {
       this.loggedInUser = JSON.parse(localStorage.getItem('currentUser')).username;
 
       this._userService.getUserByUserName(this.loggedInUser)
-      .subscribe((userLoggedIn) => {
+        .subscribe((userLoggedIn) => {
 
-        this.user = userLoggedIn;
-        console.log(this.user);
+          this.user = userLoggedIn;
+          console.log(this.user);
 
-        this._productService.productsBySupplier(this.user.userID)
-        .subscribe((productsReturned) => {
+          this._productService.productsBySupplier(this.user.userID)
+            .subscribe((productsReturned) => {
 
-          console.log(this.products);
+              this.products = productsReturned;
 
-          this.products = productsReturned;
+              console.log(this.products);
 
+              for (let index = 0; index < this.products.length; index++) {
+
+                if (this.products[index].minimumQuantity >= this.products[index].quantity) {
+
+                  console.log(false);
+
+                  this.snackBarText = this.products[index].name + ' is running out of stock!!!';
+
+                  this.openDialog(this.snackBarText);
+
+                } else {
+
+                  console.log(true);
+
+                }
+
+
+              }
+
+
+            }, (error) => {
+              console.log(error);
+            });
 
         }, (error) => {
+
           console.log(error);
+
         });
-
-      }, (error) => {
-
-        console.log(error);
-
-      });
 
     }
 
@@ -60,5 +85,12 @@ export class SupplierComponent implements OnInit {
 
   }
 
+  openDialog(text: string) {
+
+    this._matSnackBar.open(text, 'Ok', {
+      duration: 10000
+    });
+
+  }
 
 }

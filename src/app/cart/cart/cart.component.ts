@@ -98,7 +98,7 @@ export class CartComponent implements OnInit {
   openDialog(text: string) {
 
     this._matSnackBar.open(text, 'Ok', {
-      duration: 5000
+      duration: 10000
     });
 
   }
