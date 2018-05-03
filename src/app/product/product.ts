@@ -1,4 +1,5 @@
 import { Category } from '../category/category';
+import { Supplier } from '../supplier/supplier';
 
 export class Product {
     productID: number;
@@ -8,4 +9,7 @@ export class Product {
     quantity: number;
     image: string;
     category: Category;
+    minimumQuantity: number;
+    badgeQuantity: number;
+    supplier: Supplier;
 }

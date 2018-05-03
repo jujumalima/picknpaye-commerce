@@ -24,6 +24,11 @@ import { UpdateorderstatusComponent } from './order/updateorderstatus/updateorde
 import { DriverComponent } from './driver/driver/driver.component';
 import { AdminComponent } from './admin/admin/admin.component';
 import { SupplierComponent } from './supplier/supplier/supplier.component';
+import { CreatedriverComponent } from './driver/createdriver/createdriver.component';
+import { CreatesupplierComponent } from './supplier/createsupplier/createsupplier.component';
+import { CustomerordersComponent } from './order/customerorders/customerorders.component';
+import { AllusersComponent } from './users/allusers/allusers.component';
+import { UpdateproductquantityComponent } from './supplier/updateproductquantity/updateproductquantity.component';
 
 const routes: Routes = [
   { path: 'home', component: ListproductComponent },
@@ -40,7 +45,12 @@ const routes: Routes = [
   { path: 'orders-listed', component: VieworderComponent },
   { path: 'supplier-panel', component: SupplierComponent },
   { path: 'admin-admin-panel', component: AdminComponent },
+  { path: 'admin-create-driver', component: CreatedriverComponent },
+  { path: 'admin-create-supplier', component: CreatesupplierComponent },
   { path: 'update-order-status', component: UpdateorderstatusComponent },
+  { path: 'update-product-badge-quantity', component: UpdateproductquantityComponent },
+  { path: 'all-application-users', component: AllusersComponent},
+  { path: 'customer-order-orders', component: CustomerordersComponent },
   { path: 'create-order', component: CreateorderComponent },
   { path: 'customer-profile', component: CustomerprofileComponent },
   { path: 'driver-panel', component: DriverComponent },

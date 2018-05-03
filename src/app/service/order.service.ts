@@ -64,6 +64,14 @@ export class OrderService {
 
   }
 
+  getCustomerOrders(customerID: number) {
+
+    return this._http.get(this.baseUrl + '/customer-orders/' + customerID, this.requestOptions)
+    .map((response: Response) => response.json())
+    .catch(this.errorHandler);
+
+  }
+
   updateOrder(order: Order) {
 
     return this._http.put(this.baseUrl + '/update-order', JSON.stringify(order), this.requestOptions)

@@ -29,6 +29,12 @@
                         Cart({{cartSize}})
                     </a>
                 </li>
+
+                <li routerLinkActive="Active" *ngIf="loggedIn">
+                    <a routerLink="customer-order-orders">
+                        {{_loginService.getUserName()}} order(s)
+                    </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li routerLinkActive="Active" *ngIf="!hideShow">

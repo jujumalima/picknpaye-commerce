@@ -59,6 +59,14 @@ export class ProductService {
 
   }
 
+  productsBySupplier(supplierID: number) {
+
+    return this.http.get(this.baseUrl + '/all-products-by-supplier-id/' + supplierID, this.requestOptions)
+      .map((response: Response) => response.json())
+      .catch(this.errorHandler);
+
+  }
+
   updateProduct(product: Product) {
 
     return this.http.put(this.baseUrl + '/update-product', JSON.stringify(product), this.requestOptions)

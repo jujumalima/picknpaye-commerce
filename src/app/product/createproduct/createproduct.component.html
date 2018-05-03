@@ -32,6 +32,22 @@
           </span>
         </div>
 
+        <div class="form-group" [class.has-error]="minimumQuantityControl.invalid && minimumQuantityControl.touched" [class.has-success]="minimumQuantityControl.valid">
+          <label for="minimumQuantity" class="control-label">Minimum Quantity</label>
+          <input id="minimumQuantity" type="number" required class="form-control" name="minimumQuantity" [(ngModel)]="product.minimumQuantity" #minimumQuantityControl="ngModel">
+          <span class="help-block" *ngIf="minimumQuantityControl.invalid && minimumQuantityControl.touched">
+            Minimum quantity is required!
+          </span>
+        </div>
+
+        <div class="form-group" [class.has-error]="badgeQuantityControl.invalid && badgeQuantityControl.touched" [class.has-success]="badgeQuantityControl.valid">
+          <label for="badgeQuantity" class="control-label">Badge Quantity</label>
+          <input id="badgeQuantity" type="number" required class="form-control" name="badgeQuantity" [(ngModel)]="product.badgeQuantity" #badgeQuantityControl="ngModel">
+          <span class="help-block" *ngIf="badgeQuantityControl.invalid && badgeQuantityControl.touched">
+            Badge quantity is required!
+          </span>
+        </div>
+
         <div class="form-group" [class.has-error]="imageControl.invalid && imageControl.touched" [class.has-success]="imageControl.valid">
           <label for="image" class="control-label">Image Path</label>
           <input id="image" type="text" required class="form-control" name="image" [(ngModel)]="product.image" #imageControl="ngModel">
@@ -51,6 +67,20 @@
 
           <span class="help-block" *ngIf="categoryControl.invalid && categoryControl.touched">
             Select category!
+          </span>
+        </div>
+
+        <div class="form-group" [class.has-error]="supplierControl.invalid && supplierControl.touched" [class.has-success]="supplierControl.valid">
+          <label for="supplier" class="control-label">Supplier</label>
+          <select id="supplier" required class="form-control" name="supplier" [(ngModel)]="product.supplier" #supplierControl="ngModel">
+            <option [ngValue]="null" style="font: weight 800;">Select a supplier</option>
+            <option *ngFor="let supplier of suppliers" [ngValue]="supplier" style="font-weight:800;background-color:#337ab7;color:whitesmoke;">
+                {{supplier.fullNames}}
+            </option>
+          </select>
+
+          <span class="help-block" *ngIf="supplierControl.invalid && supplierControl.touched">
+            Select supplier!
           </span>
         </div>
 

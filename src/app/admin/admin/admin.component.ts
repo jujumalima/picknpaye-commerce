@@ -48,4 +48,21 @@ export class AdminComponent implements OnInit {
 
   }
 
+  addSupplier() {
+
+    this._router.navigate(['/admin-create-supplier']);
+
+  }
+
+  addDriver() {
+
+    this._router.navigate(['/admin-create-driver']);
+
+  }
+
+  viewAllSystemUsers() {
+
+    this._router.navigate(['/all-application-users']);
+  }
+
 }

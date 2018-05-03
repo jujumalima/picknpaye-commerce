@@ -43,6 +43,13 @@ import { DriverModule } from './driver/driver/driver.module';
 import { DriverRoutingModule } from './driver/driver/driver-routing.module';
 import { AdminComponent } from './admin/admin/admin.component';
 import { SupplierComponent } from './supplier/supplier/supplier.component';
+import { SupplierService } from './service/supplier.service';
+import { CreatedriverComponent } from './driver/createdriver/createdriver.component';
+import { PnpdriverService } from './service/pnpdriver.service';
+import { CreatesupplierComponent } from './supplier/createsupplier/createsupplier.component';
+import { CustomerordersComponent } from './order/customerorders/customerorders.component';
+import { AllusersComponent } from './users/allusers/allusers.component';
+import { UpdateproductquantityComponent } from './supplier/updateproductquantity/updateproductquantity.component';
 
 
 @NgModule({
@@ -68,7 +75,12 @@ import { SupplierComponent } from './supplier/supplier/supplier.component';
     CustomerprofileComponent,
     UpdateorderstatusComponent,
     AdminComponent,
-    SupplierComponent
+    SupplierComponent,
+    CreatedriverComponent,
+    CreatesupplierComponent,
+    CustomerordersComponent,
+    AllusersComponent,
+    UpdateproductquantityComponent
 
   ],
   imports: [
@@ -92,7 +104,9 @@ import { SupplierComponent } from './supplier/supplier/supplier.component';
     BankService,
     BankdetailService,
     OrderService,
-    UserService
+    UserService,
+    SupplierService,
+    PnpdriverService
   ],
   bootstrap: [AppComponent]
 })
