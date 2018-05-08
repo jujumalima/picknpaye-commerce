@@ -7,6 +7,7 @@ import { NgxCarouselModule } from 'ngx-carousel';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -92,7 +93,8 @@ import { UpdateproductquantityComponent } from './supplier/updateproductquantity
     DriverModule,
     CarouselModule.forRoot(),
     BrowserAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxPaginationModule
   ],
   providers: [
 
